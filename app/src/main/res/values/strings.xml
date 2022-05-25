@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CinepilApp</string>
+    <string name="button_text_ok">Ok</string>
+    <string name="genre">Genre</string>
+    <string name="duration">Duration</string>
+    <string name="language">Language</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="review">Review</string>
+    <string name="error_load_data">Error Load Data</string>
 </resources>
