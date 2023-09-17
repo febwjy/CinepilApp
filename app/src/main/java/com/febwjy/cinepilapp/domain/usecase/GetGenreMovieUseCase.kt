@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 19/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 class GetGenreMovieUseCase @Inject constructor(
     private val movieRepository: MovieRepository

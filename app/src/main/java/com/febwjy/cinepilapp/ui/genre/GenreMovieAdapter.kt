@@ -8,7 +8,7 @@ import com.febwjy.cinepilapp.data.model.dto.GenreResponse
 import com.febwjy.cinepilapp.databinding.ItemGenreBinding
 
 /**
- * Created by Febby Wijaya on 19/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 class GenreMovieAdapter(private val genres: MutableList<GenreResponse.Genres>, private val onClickListener: OnClickListener)
     : RecyclerView.Adapter<GenreMovieAdapter.ViewHolder>() {

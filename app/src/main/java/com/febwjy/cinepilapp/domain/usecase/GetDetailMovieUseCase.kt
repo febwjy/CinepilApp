@@ -1,7 +1,6 @@
 package com.febwjy.cinepilapp.domain.usecase
 
 import com.febwjy.cinepilapp.data.model.dto.MovieDetailResponse
-import com.febwjy.cinepilapp.domain.repository.MovieRepository
 import com.febwjy.cinepilapp.network.MovieService
 import com.febwjy.cinepilapp.utils.NetworkResult
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -11,7 +10,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 19/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 @ActivityRetainedScoped
 class GetDetailMovieUseCase @Inject constructor(

@@ -2,7 +2,6 @@ package com.febwjy.cinepilapp.ui.movielist
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.febwjy.cinepilapp.utils.Constant
 import com.febwjy.cinepilapp.utils.DateUtils
 
 /**
- * Created by Febby Wijaya on 24/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 class MovieListAdapter (
     private val movieList: MutableList<MovieListResponse.MovieList>,

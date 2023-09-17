@@ -10,18 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.febwjy.cinepilapp.R
-import com.febwjy.cinepilapp.data.model.dto.MovieListResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
 import com.febwjy.cinepilapp.databinding.FragmentMovieDetailBinding
 import com.febwjy.cinepilapp.ui.BaseState
 import com.febwjy.cinepilapp.ui.extension.gone
 import com.febwjy.cinepilapp.ui.extension.showToast
 import com.febwjy.cinepilapp.ui.extension.visible
-import com.febwjy.cinepilapp.ui.movielist.MovieListAdapter
 import com.febwjy.cinepilapp.utils.Constant
 import com.febwjy.cinepilapp.utils.Constant.Companion.ID_MOVIE
 import com.febwjy.cinepilapp.utils.NetworkResult
@@ -30,7 +27,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 /**
- * Created by Febby Wijaya on 24/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 @AndroidEntryPoint
 class MovieDetailFragment(): Fragment(R.layout.fragment_movie_detail) {
@@ -77,6 +74,8 @@ class MovieDetailFragment(): Fragment(R.layout.fragment_movie_detail) {
                         binding.txtGenre.text = viewModel.getGenres(it)
                     }
                 }
+
+                else -> {}
             }
         }
     }

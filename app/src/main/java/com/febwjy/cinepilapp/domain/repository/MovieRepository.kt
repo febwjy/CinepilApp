@@ -1,15 +1,13 @@
 package com.febwjy.cinepilapp.domain.repository
 
 import com.febwjy.cinepilapp.data.model.dto.GenreResponse
-import com.febwjy.cinepilapp.data.model.dto.MovieDetailResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieListResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
 import com.febwjy.cinepilapp.utils.NetworkListResult
-import com.febwjy.cinepilapp.utils.NetworkResult
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Created by Febby Wijaya on 19/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 interface MovieRepository{
 

@@ -1,14 +1,12 @@
 package com.febwjy.cinepilapp.data.repository
 
 import com.febwjy.cinepilapp.data.model.dto.GenreResponse
-import com.febwjy.cinepilapp.data.model.dto.MovieDetailResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieListResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
 import com.febwjy.cinepilapp.domain.repository.MovieRepository
 import com.febwjy.cinepilapp.network.MovieService
 import com.febwjy.cinepilapp.utils.Constant
 import com.febwjy.cinepilapp.utils.NetworkListResult
-import com.febwjy.cinepilapp.utils.NetworkResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +14,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 19/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 class MovieRepositoryImpl @Inject constructor(
     private val movieService: MovieService

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 24/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 @HiltViewModel
 class MovieListViewModel @Inject constructor(

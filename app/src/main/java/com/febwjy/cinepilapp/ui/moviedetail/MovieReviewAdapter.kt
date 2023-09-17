@@ -1,7 +1,6 @@
 package com.febwjy.cinepilapp.ui.moviedetail
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +8,7 @@ import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
 import com.febwjy.cinepilapp.databinding.ItemReviewBinding
 
 /**
- * Created by Febby Wijaya on 24/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 class MovieReviewAdapter(
     private val movieReview: MutableList<MovieReviewResponse.Result>,

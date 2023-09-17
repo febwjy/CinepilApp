@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.febwjy.cinepilapp.data.model.dto.MovieDetailResponse
-import com.febwjy.cinepilapp.data.model.dto.MovieListResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
 import com.febwjy.cinepilapp.domain.usecase.GetDetailMovieUseCase
 import com.febwjy.cinepilapp.domain.usecase.GetMovieReviewUseCase
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 24/05/22.
+ * Created by Febby Wijaya on 16/09/23.
  */
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
@@ -50,6 +49,8 @@ class MovieDetailViewModel @Inject constructor(
                         dismissLoading()
                         Log.e("result", result.message.toString())
                     }
+
+                    else -> {}
                 }
             }
         }
