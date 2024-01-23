@@ -1,5 +1,6 @@
 package com.febwjy.cinepilapp.ui.movielist
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import com.febwjy.cinepilapp.utils.Constant
 import com.febwjy.cinepilapp.utils.DateUtils
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class MovieListAdapter (
     private val movieList: MutableList<MovieListResponse.MovieList>,
@@ -24,6 +25,7 @@ class MovieListAdapter (
         fun onClick(idMovie: String) = clickListener(idMovie)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(mMovieList: List<MovieListResponse.MovieList>) {
         movieList.clear()
         movieList.addAll(mMovieList)
@@ -33,15 +35,16 @@ class MovieListAdapter (
     inner class ViewHolder (private val itemBinding: ItemMovieListBinding, private val context: Context)
         : RecyclerView.ViewHolder(itemBinding.root){
 
+            @SuppressLint("SetTextI18n")
             fun bind(movieList: MovieListResponse.MovieList) {
                 if (movieList.title != null) {
                     itemBinding.txtMovieTitle.text = movieList.title
-                    itemBinding.txtMovieRating.text = movieList.vote_average.toString() + "/10"
-                    itemBinding.txtReleaseDate.text = DateUtils.getFormattedDate(movieList.release_date.toString())
-                } else itemBinding.txtMovieTitle.text = movieList.original_title
-                if (movieList.poster_path != null) {
-                    val imgPath = Constant.IMG_URL + movieList.backdrop_path
-                    var uri: Uri = Uri.parse(imgPath)
+                    itemBinding.txtMovieRating.text = movieList.voteAverage.toString() + "/10"
+                    itemBinding.txtReleaseDate.text = DateUtils.getFormattedDate(movieList.releaseDate.toString())
+                } else itemBinding.txtMovieTitle.text = movieList.originalTitle
+                if (movieList.posterPath != null) {
+                    val imgPath = Constant.IMG_URL + movieList.backdropPath
+                    val uri: Uri = Uri.parse(imgPath)
                     Glide.with(context).load(uri)
                         .into(itemBinding.imgMovie)
                     itemBinding.imgMovie.visibility = View.VISIBLE

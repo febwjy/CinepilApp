@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class GetMovieReviewUseCase @Inject constructor(
     private val movieRepository: MovieRepository
 ){
-    suspend fun invoke(api_key: String, movie_id: Int, page: Int) :
+    suspend fun invoke(apiKey: String, movieId: Int, page: Int) :
             Flow<NetworkListResult<List<MovieReviewResponse.Result>, MovieReviewResponse>> {
-        return movieRepository.getReviewMovie(api_key, page, movie_id)
+        return movieRepository.getReviewMovie(apiKey, page, movieId)
     }
 }

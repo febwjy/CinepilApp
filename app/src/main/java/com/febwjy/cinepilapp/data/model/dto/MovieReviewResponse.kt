@@ -3,28 +3,28 @@ package com.febwjy.cinepilapp.data.model.dto
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class MovieReviewResponse {
 
     @SerializedName("results")
-    val results: List<Result>? = emptyList()
+    val results: List<Result> = emptyList()
 
     @SerializedName("status_message")
-    var status_message: String? = null
+    var statusMessage: String? = null
 
     @SerializedName("status_code")
-    var status_code: Int? = null
+    var statusCode: Int? = null
 
     data class Result(
         val author: String? = null,
         val content: String? = null,
-        val author_details: Detail? = null
+        @SerializedName("author_details")
+        val authorDetails: Detail? = null
     )
 
     data class Detail (
         val rating: Double? = null
     )
-
 
 }

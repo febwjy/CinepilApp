@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CinepilApp</string>
-    <string name="button_text_ok">Ok</string>
+    <string name="button_text_ok">OK</string>
     <string name="genre">Genre</string>
     <string name="duration">Duration</string>
     <string name="language">Language</string>

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @HiltViewModel
 open class MainViewModel @Inject constructor(application: Application): AndroidViewModel(application){

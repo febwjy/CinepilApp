@@ -1,5 +1,6 @@
 package com.febwjy.cinepilapp.ui.genre
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import com.febwjy.cinepilapp.data.model.dto.GenreResponse
 import com.febwjy.cinepilapp.databinding.ItemGenreBinding
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class GenreMovieAdapter(private val genres: MutableList<GenreResponse.Genres>, private val onClickListener: OnClickListener)
     : RecyclerView.Adapter<GenreMovieAdapter.ViewHolder>() {
@@ -17,6 +18,7 @@ class GenreMovieAdapter(private val genres: MutableList<GenreResponse.Genres>, p
         fun onClick(id: String) = clickListener(id)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(mProducts: List<GenreResponse.Genres>) {
         genres.clear()
         genres.addAll(mProducts)
@@ -28,6 +30,7 @@ class GenreMovieAdapter(private val genres: MutableList<GenreResponse.Genres>, p
         val context: Context
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(genre: GenreResponse.Genres) {
             if (genre.name != null){
                 itemBinding.genreTextView.text = genre.name
@@ -37,7 +40,7 @@ class GenreMovieAdapter(private val genres: MutableList<GenreResponse.Genres>, p
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val context = parent.context;
+        val context = parent.context
         return ViewHolder(view, context)
     }
 

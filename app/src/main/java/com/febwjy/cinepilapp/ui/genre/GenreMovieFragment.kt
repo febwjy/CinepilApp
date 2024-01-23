@@ -23,10 +23,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @AndroidEntryPoint
-class GenreMovieFragment(): Fragment(R.layout.fragment_movie_genre) {
+class GenreMovieFragment: Fragment(R.layout.fragment_movie_genre) {
 
     private var mBinding: FragmentMovieGenreBinding? = null
     private val binding get() = mBinding!!

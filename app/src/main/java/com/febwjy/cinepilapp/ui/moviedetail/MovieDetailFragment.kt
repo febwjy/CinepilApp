@@ -1,5 +1,6 @@
 package com.febwjy.cinepilapp.ui.moviedetail
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -27,10 +28,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @AndroidEntryPoint
-class MovieDetailFragment(): Fragment(R.layout.fragment_movie_detail) {
+class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private var mBinding: FragmentMovieDetailBinding? =null
     private val binding get() = mBinding!!
@@ -57,14 +58,15 @@ class MovieDetailFragment(): Fragment(R.layout.fragment_movie_detail) {
         viewModel.getMovieReview(Constant.API_KEY, idMovie.toInt())
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeMovieDetail() {
         viewModel.mMovieDetail.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Success -> {
                     result.data?.let {
 
-                        val imgPath = Constant.IMG_URL + it.poster_path
-                        var uri: Uri = Uri.parse(imgPath)
+                        val imgPath = Constant.IMG_URL + it.posterPath
+                        val uri: Uri = Uri.parse(imgPath)
                         Glide.with(this).load(uri)
                             .into(binding.imgPoster)
                         (activity as AppCompatActivity).supportActionBar?.title = it.title

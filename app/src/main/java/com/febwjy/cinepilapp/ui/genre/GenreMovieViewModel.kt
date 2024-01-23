@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @HiltViewModel
 class GenreMovieViewModel @Inject constructor(
@@ -26,9 +26,9 @@ class GenreMovieViewModel @Inject constructor(
     private val genre = MutableStateFlow<List<GenreResponse.Genres>>(mutableListOf())
     val mGenre: StateFlow<List<GenreResponse.Genres>> get() = genre
 
-    fun getGenre(api_key: String){
+    fun getGenre(apiKey: String){
         viewModelScope.launch {
-            getGenreMovieUseCase.invoke(api_key).onStart {
+            getGenreMovieUseCase.invoke(apiKey).onStart {
                 showLoading()
             }.catch { exception ->
                 dismissLoading()
@@ -41,7 +41,7 @@ class GenreMovieViewModel @Inject constructor(
                     }
                     is NetworkListResult.Error -> {
                         dismissLoading()
-                        Log.e("result", result.rawResponse.status_message!!)
+                        Log.e("result", result.rawResponse.statusMessage!!)
                     }
                 }
             }

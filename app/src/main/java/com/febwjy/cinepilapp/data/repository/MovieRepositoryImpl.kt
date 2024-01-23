@@ -3,6 +3,7 @@ package com.febwjy.cinepilapp.data.repository
 import com.febwjy.cinepilapp.data.model.dto.GenreResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieListResponse
 import com.febwjy.cinepilapp.data.model.dto.MovieReviewResponse
+import com.febwjy.cinepilapp.data.model.dto.PopularListResponse
 import com.febwjy.cinepilapp.domain.repository.MovieRepository
 import com.febwjy.cinepilapp.network.MovieService
 import com.febwjy.cinepilapp.utils.Constant
@@ -14,22 +15,22 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class MovieRepositoryImpl @Inject constructor(
     private val movieService: MovieService
 ) : MovieRepository {
 
-    override suspend fun getGenreMovie(api_key: String): Flow<NetworkListResult<List<GenreResponse.Genres>, GenreResponse>> {
+    override suspend fun getGenreMovie(apiKey: String): Flow<NetworkListResult<List<GenreResponse.Genres>, GenreResponse>> {
         return flow {
             val response = movieService.getGenre(
-                api_key = Constant.API_KEY
+                apiKey = Constant.API_KEY
             )
             if (response.isSuccessful) {
                 val body = response.body()!!
                 val genre = mutableListOf<GenreResponse.Genres>()
 
-                body.genres?.forEach {
+                body.genres.forEach {
                     genre.add(
                         GenreResponse.Genres(
                             id = it.id,
@@ -43,41 +44,79 @@ class MovieRepositoryImpl @Inject constructor(
                 val error = Gson().fromJson<GenreResponse>(
                     response.errorBody()!!.charStream(), type
                 )!!
-                error.status_code = response.code()
+                error.statusCode = response.code()
+                emit(NetworkListResult.Error(error))
+            }
+        }
+    }
+
+    override suspend fun getPopular(): Flow<NetworkListResult<List<PopularListResponse.Result>, PopularListResponse>> {
+        return flow {
+            val response = movieService.getPopular(
+                apiKey = Constant.API_KEY
+            )
+            if (response.isSuccessful) {
+                val body = response.body()!!
+                val popular = mutableListOf<PopularListResponse.Result>()
+
+                body.results?.forEach{
+                    popular.add(
+                        PopularListResponse.Result(
+                            backdropPath = it.backdropPath,
+                            id = it.id,
+                            title = it.title,
+                            overview = it.overview,
+                            posterPath = it.posterPath,
+                            mediaType = it.mediaType,
+                            popularity = it.popularity,
+                            releaseDate = it.releaseDate,
+                            voteAverage = it.voteAverage,
+                            voteCount = it.voteCount,
+                            name = it.name,
+                        )
+                    )
+                }
+                emit(NetworkListResult.Success(popular))
+            } else {
+                val type = object : TypeToken<PopularListResponse>() {}.type
+                val error = Gson().fromJson<PopularListResponse>(
+                    response.errorBody()!!.charStream(), type
+                )!!
+                error.statusCode = response.code()
                 emit(NetworkListResult.Error(error))
             }
         }
     }
 
     override suspend fun getMovieByGenre(
-        api_key: String,
-        with_genre: String,
+        apiKey: String,
+        withGenre: String,
         page: Int
     ): Flow<NetworkListResult<List<MovieListResponse.MovieList>, MovieListResponse>> {
         return flow {
             val response = movieService.getMovieByGenre(
-                api_key = Constant.API_KEY,
-                with_genre = with_genre,
+                apiKey = Constant.API_KEY,
+                withGenre = withGenre,
                 page = page
             )
             if (response.isSuccessful) {
                 val body = response.body()!!
                 val movieByGenre = mutableListOf<MovieListResponse.MovieList>()
 
-                body.movieList?.forEach {
+                body.movieList.forEach {
                     movieByGenre.add(
                         MovieListResponse.MovieList(
-                            backdrop_path = it.backdrop_path,
+                            backdropPath = it.backdropPath,
                             id = it.id,
-                            original_title = it.original_title,
+                            originalTitle = it.originalTitle,
                             overview = it.overview,
                             popularity = it.popularity,
-                            poster_path = it.poster_path,
-                            release_date = it.release_date,
+                            posterPath = it.posterPath,
+                            releaseDate = it.releaseDate,
                             title = it.title,
                             video = it.video,
-                            vote_average = it.vote_average,
-                            vote_count = it.vote_count
+                            voteAverage = it.voteAverage,
+                            voteCount = it.voteCount
                         )
                     )
                 }
@@ -87,33 +126,33 @@ class MovieRepositoryImpl @Inject constructor(
                 val error = Gson().fromJson<MovieListResponse>(
                     response.errorBody()!!.charStream(), type
                 )!!
-                error.status_code = response.code()
+                error.statusCode = response.code()
                 emit(NetworkListResult.Error(error))
             }
         }
     }
 
     override suspend fun getReviewMovie(
-        api_key: String,
+        apiKey: String,
         page: Int,
-        movie_id: Int
+        movieId: Int
     ): Flow<NetworkListResult<List<MovieReviewResponse.Result>, MovieReviewResponse>> {
         return flow {
             val response = movieService.getMovieReview(
-                api_key = Constant.API_KEY,
+                apiKey = Constant.API_KEY,
                 page = page,
-                movie_id = movie_id
+                movieId = movieId
             )
             if (response.isSuccessful) {
                 val body = response.body()!!
                 val movieReview = mutableListOf<MovieReviewResponse.Result>()
 
-                body.results?.forEach {
+                body.results.forEach {
                     movieReview.add(
                         MovieReviewResponse.Result(
                             author = it.author,
                             content = it.content,
-                            author_details = it.author_details
+                            authorDetails = it.authorDetails
                         )
                     )
                 }
@@ -123,7 +162,7 @@ class MovieRepositoryImpl @Inject constructor(
                 val error = Gson().fromJson<MovieReviewResponse>(
                     response.errorBody()!!.charStream(), type
                 )!!
-                error.status_code = response.code()
+                error.statusCode = response.code()
                 emit(NetworkListResult.Error(error))
             }
         }

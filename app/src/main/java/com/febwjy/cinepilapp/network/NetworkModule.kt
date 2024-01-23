@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,7 +28,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNewsAPI() : MovieService {
+    fun provideTMDBAPI() : MovieService {
         val httpClient = OkHttpClient.Builder()
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)

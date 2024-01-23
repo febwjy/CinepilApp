@@ -10,23 +10,23 @@ import retrofit2.Response
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @ActivityRetainedScoped
 class GetDetailMovieUseCase @Inject constructor(
     private val movieService: MovieService
 ){
-    suspend fun getMovieDetail(api_key: String, movie_id: Int) =
-        movieService.getDetailMovie(movie_id, api_key)
+    private suspend fun getMovieDetail(apiKey: String, movieId: Int) =
+        movieService.getDetailMovie(movieId, apiKey)
 
-    suspend fun invoke(api_key: String, movie_id: Int) :
+    suspend fun invoke(apiKey: String, movieId: Int) :
             Flow<NetworkResult<MovieDetailResponse>> {
-        return flow<NetworkResult<MovieDetailResponse>> {
-            emit(safeApiCall { getMovieDetail(api_key, movie_id)})
+        return flow {
+            emit(safeApiCall { getMovieDetail(apiKey, movieId)})
         }
     }
 
-    suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): NetworkResult<T> {
+    private suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): NetworkResult<T> {
         try {
             val response = apiCall()
             if (response.isSuccessful) {

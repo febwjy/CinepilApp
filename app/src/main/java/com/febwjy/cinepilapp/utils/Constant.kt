@@ -1,7 +1,7 @@
 package com.febwjy.cinepilapp.utils
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class Constant {
 

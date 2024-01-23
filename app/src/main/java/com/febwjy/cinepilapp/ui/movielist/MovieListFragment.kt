@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.onEach
  * Created by Febby Wijaya on 16/09/23.
  */
 @AndroidEntryPoint
-class MovieListFragment(): Fragment(R.layout.fragment_movie_list) {
+class MovieListFragment: Fragment(R.layout.fragment_movie_list) {
 
     private var mBinding: FragmentMovieListBinding? = null
     private val binding get() = mBinding!!
@@ -62,7 +62,7 @@ class MovieListFragment(): Fragment(R.layout.fragment_movie_list) {
                         viewModel.getMovieList(Constant.API_KEY, idGenre, page)
                         Log.d("LoadMore", "onScrollStateChanged: ${viewModel.loadMore.value}")
                     }
-                    page++;
+                    page++
                 }
             }
         })
@@ -133,6 +133,7 @@ class MovieListFragment(): Fragment(R.layout.fragment_movie_list) {
     }
 
     override fun onDestroy() {
+        super.onDestroy()
         super.onDestroyView()
         mBinding = null
     }

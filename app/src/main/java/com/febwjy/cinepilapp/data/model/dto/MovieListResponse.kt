@@ -4,43 +4,39 @@ import com.google.gson.annotations.SerializedName
 
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class MovieListResponse {
-
-    @SerializedName("page")
-    val page: Int? = null
-
     @SerializedName("results")
-    val movieList: List<MovieList>? = emptyList()
-
-    @SerializedName("total_pages")
-    val totalPages: Int? = null
-
-    @SerializedName("total_results")
-    val totalResults: Int? = null
+    val movieList: List<MovieList> = emptyList()
 
     @SerializedName("status_message")
-    val status_message: String? = null
+    val statusMessage: String? = null
 
     @SerializedName("success")
     val success: Boolean? = null
 
     @SerializedName("status_code")
-    var status_code: Int? = null
+    var statusCode: Int? = null
 
     data class MovieList(
-        val backdrop_path: String? = null,
+        @SerializedName("backdrop_path")
+        val backdropPath: String? = null,
         val id: Int? = null,
-        val original_title: String? = null,
+        @SerializedName("original_title")
+        val originalTitle: String? = null,
         val overview: String? = null,
         val popularity: Double? = null,
-        val poster_path: String? = null,
-        val release_date: String? = null,
+        @SerializedName("poster_path")
+        val posterPath: String? = null,
+        @SerializedName("release_date")
+        val releaseDate: String? = null,
         val title: String? = null,
         val video: Boolean? = null,
-        val vote_average: Double? = null,
-        val vote_count: Int? = null
+        @SerializedName("vote_average")
+        val voteAverage: Double? = null,
+        @SerializedName("vote_count")
+        val voteCount: Int? = null
     )
 
 }

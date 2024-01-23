@@ -3,19 +3,18 @@ package com.febwjy.cinepilapp.data.model.dto
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 class GenreResponse {
 
     @SerializedName("genres")
-    val genres: List<Genres>? = emptyList()
-
+    val genres: List<Genres> = emptyList()
 
     @SerializedName("status_code")
-    var status_code: Int? = null
+    var statusCode: Int? = null
 
     @SerializedName("status_message")
-    val status_message: String? = null
+    val statusMessage: String? = null
 
     data class Genres(
         val id: Int? = null,

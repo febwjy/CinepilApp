@@ -3,7 +3,7 @@ package com.febwjy.cinepilapp.ui.extension
 import android.view.View
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 fun View.gone(){
     visibility = View.GONE

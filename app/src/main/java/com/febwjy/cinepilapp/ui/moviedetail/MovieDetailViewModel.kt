@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Created by Febby Wijaya on 16/09/23.
+ * Created by Febby Wijaya on 22/01/24.
  */
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
@@ -33,9 +33,9 @@ class MovieDetailViewModel @Inject constructor(
     private val movieReview = MutableStateFlow<List<MovieReviewResponse.Result>>(mutableListOf())
     val mMoviewReview: StateFlow<List<MovieReviewResponse.Result>> get() = movieReview
 
-    fun getMovieDetail(api_key: String, id_movie: Int) {
+    fun getMovieDetail(apiKey: String, idMovie: Int) {
         viewModelScope.launch {
-            getMovieDetailUseCase.invoke(api_key, id_movie).onStart {
+            getMovieDetailUseCase.invoke(apiKey, idMovie).onStart {
                 showLoading()
             }.catch { exception ->
                 dismissLoading()
@@ -56,9 +56,9 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun getMovieReview(api_key: String, id_movie: Int) {
+    fun getMovieReview(apiKey: String, idMovie: Int) {
         viewModelScope.launch {
-            getMovieReviewUseCase.invoke(api_key, id_movie, 1).collect { result ->
+            getMovieReviewUseCase.invoke(apiKey, idMovie, 1).collect { result ->
                 when (result) {
                     is NetworkListResult.Success -> {
                         dismissLoading()
@@ -66,31 +66,31 @@ class MovieDetailViewModel @Inject constructor(
                     }
                     is NetworkListResult.Error -> {
                         dismissLoading()
-                        Log.e("result", result.rawResponse.status_message!!)
+                        Log.e("result", result.rawResponse.statusMessage!!)
                     }
                 }
             }
         }
     }
 
-    fun getGenres(movieDetail: MovieDetailResponse): String? {
+    fun getGenres(movieDetail: MovieDetailResponse): String {
         var genres = ""
-        for (i in 0 until movieDetail.genres!!.size) {
+        for (i in 0 until movieDetail.genres.size) {
             val genre: MovieDetailResponse.Genres = movieDetail.genres[i]
             genres += genre.name.toString() + ", "
         }
         genres = removeTrailingComma(genres)
-        return if (genres.isEmpty()) "-" else genres
+        return genres.ifEmpty { "-" }
     }
 
-    fun getLanguages(movieDetail: MovieDetailResponse): String? {
+    fun getLanguages(movieDetail: MovieDetailResponse): String {
         var languages = ""
-        for (i in 0 until movieDetail.spoken_languages!!.size) {
-            val language: MovieDetailResponse.Language = movieDetail.spoken_languages[i]
-            languages += language.english_name.toString()+ ", "
+        for (i in 0 until movieDetail.spokenLanguages.size) {
+            val language: MovieDetailResponse.Language = movieDetail.spokenLanguages[i]
+            languages += language.englishName.toString()+ ", "
         }
         languages = removeTrailingComma(languages)
-        return if (languages.isEmpty()) "-" else languages
+        return languages.ifEmpty { "-" }
     }
 
     private fun removeTrailingComma(text: String): String {
